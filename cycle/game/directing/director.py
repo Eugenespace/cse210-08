@@ -12,7 +12,7 @@ class Director:
     """
 
     def __init__(self, keyboard_service, display_service):
-        self._SCORE = 600
+        self._SCORE = 600 #don't need this from greed game
         self.__game_over = False
         """Constructs a new Director using the specified keyboard and display services.
         
@@ -35,8 +35,9 @@ class Director:
             self._do_updates(cast)
             self._do_outputs(cast)
             if self._is_over():
-                self.__game_over = False
-                self._display_service.close_window()
+                # self.__game_over = False
+                # self._display_service.close_window()
+                pass
 
     def _get_inputs(self, cast):
         """Gets directional input from the keyboard and applies it to the players.
@@ -61,6 +62,9 @@ class Director:
         """
         cycle1 = cast.get_first_actor("cycle1")
         cycle2 = cast.get_first_actor("cycle2")
+        score1 = cast.get_first_actor("score1")
+        score2 = cast.get_first_actor("score2")
+        message = cast.get_first_actor("messages")
 
         max_x = self._display_service.get_width()
         max_y = self._display_service.get_height()
@@ -73,6 +77,13 @@ class Director:
         trail2 = Trail(cycle2.get_previous_position(), cycle2.get_color())
         cast.add_actor("trails", trail2)
 
+        if (not cycle1.isDead()): 
+            score1.add_points(1)
+
+        if (not cycle2.isDead()): 
+            score2.add_points(1)
+
+
         all_trails = cast.get_actors("trails")
         for trail in all_trails:
             if cycle1.get_position().equals(trail.get_position()):
@@ -83,6 +94,11 @@ class Director:
             if cycle2.get_position().equals(trail.get_position()):
                 cycle2.die()
                 #self.__game_over = True
+
+        if (cycle1.isDead() and cycle2.isDead()):
+            self.__game_over = True
+            message.set_text("Game Over")
+
 
     # The game over
 

@@ -2,6 +2,8 @@ import game.shared.gamecontants as gameconstants
 
 from game.casting.cast import Cast
 from game.casting.cycle import Cycle
+from game.casting.score import Score
+from game.casting.actor import Actor
 
 from game.directing.director import Director
 
@@ -15,6 +17,7 @@ def main():
 
     # create the cast
     cast = Cast()
+    
 
     """ NEEDS TO BE UPDATED """
     """
@@ -34,6 +37,14 @@ def main():
     cycle1.set_color(Color(50, 125, 200))
     cast.add_actor("cycle1", cycle1)
 
+    position = Point(1, 1) #just a facy way of positioning proportionally to the screen size
+    position = position.scale(gameconstants.CELL_SIZE)
+    score1 = Score()
+    score1.set_position(position)
+    score1.set_color(Color(50, 125, 200))
+    cast.add_actor("score1", score1)
+    
+
 
     position = Point(int(gameconstants.COLS / 3 * 2), int(gameconstants.ROWS / 2))
     position = position.scale(gameconstants.CELL_SIZE)
@@ -41,6 +52,21 @@ def main():
     cycle2.set_velocity(Point(0, 0))
     cycle2.set_color(Color(0, 0, 200))
     cast.add_actor("cycle2", cycle2)
+
+    position = Point((gameconstants.COLS - 6), 1) #just a facy way of positioning proportionally to the screen size
+    position = position.scale(gameconstants.CELL_SIZE)
+    score2 = Score()
+    score2.set_position(position)
+    score2.set_color(Color(0, 0, 200))
+    cast.add_actor("score2", score2)
+
+    position = Point(int(gameconstants.COLS / 2), int(gameconstants.ROWS / 2))
+    position = position.scale(gameconstants.CELL_SIZE)
+
+    message = Actor()
+    message.set_text("")
+    message.set_position(position)
+    cast.add_actor("messages", message)
 
     # start the game
     keyboard_service = KeyboardService()
@@ -51,6 +77,7 @@ def main():
         gameconstants.CELL_SIZE,
         gameconstants.FRAME_RATE
         )
+
     director = Director(keyboard_service, display_service)
     director.start_game(cast)
 
