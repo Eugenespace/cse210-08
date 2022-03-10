@@ -14,7 +14,7 @@ class Cycle(Actor):
         self.set_text("@")
         self.set_position(pos)
         self._keyboard_service_flex = KeyboardServiceFlex(num)
-        self._DEAD = False
+        self._dead = False
         self._previous_position = pos
     
     def get_direction(self):
@@ -35,3 +35,6 @@ class Cycle(Actor):
 
     def get_previous_position(self):
         return self._previous_position
+
+    def isDead (self):
+        return self._dead
