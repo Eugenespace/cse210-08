@@ -1,5 +1,5 @@
 from game.casting.trail import Trail
-
+import game.shared.gamecontants as gameconstants
 
 class Director:
     """A person who directs the game. 
@@ -12,7 +12,7 @@ class Director:
     """
 
     def __init__(self, keyboard_service, display_service):
-        self._SCORE = 600 #don't need this from greed game
+        
         self.__game_over = False
         """Constructs a new Director using the specified keyboard and display services.
         
@@ -54,12 +54,15 @@ class Director:
         vel = cycle2.get_direction()
         cycle2.set_velocity(vel)
 
+        
+
     def _do_updates(self, cast):
         """Updates the players' positions and resolves any collisions with trails.
 
         Args:
             cast (Cast): The cast of actors.
         """
+        #Actor builds
         cycle1 = cast.get_first_actor("cycle1")
         cycle2 = cast.get_first_actor("cycle2")
         score1 = cast.get_first_actor("score1")
@@ -70,7 +73,6 @@ class Director:
         max_y = self._display_service.get_height()
         cycle1.move_next(max_x, max_y)
         cycle2.move_next(max_x, max_y)
-
 
         trail1 = Trail(cycle1.get_previous_position(), cycle1.get_color())
         cast.add_actor("trails", trail1)
@@ -88,12 +90,10 @@ class Director:
         for trail in all_trails:
             if cycle1.get_position().equals(trail.get_position()):
                 cycle1.die()
-                ### BE CAREFUL this closes the game, we have to change the
-                ### game over system.
-                #self.__game_over = True
+                
             if cycle2.get_position().equals(trail.get_position()):
                 cycle2.die()
-                #self.__game_over = True
+                
 
         if (cycle1.isDead() and cycle2.isDead()):
             self.__game_over = True

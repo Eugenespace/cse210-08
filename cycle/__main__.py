@@ -19,54 +19,51 @@ def main():
     cast = Cast()
     
 
-    """ NEEDS TO BE UPDATED """
-    """
-    # create the banner
-    banner = Actor()
-    banner.set_text("")
-    banner.set_font_size(gameconstants.FONT_SIZE)
-    banner.set_color(gameconstants.WHITE)
-    banner.set_position(Point(gameconstants.CELL_SIZE, 0))
-    cast.add_actor("banners", banner)
-    """
-
-    position = Point(int(gameconstants.COLS / 3), int(gameconstants.ROWS / 2)) #just a facy way of positioning proportionally to the screen size
+    # Cast Parameters -----------------------------------------------------------------------------
+    # Actor cycle 1 
+    position = Point(int(gameconstants.COLS / 3), int(gameconstants.ROWS / 2)) 
     position = position.scale(gameconstants.CELL_SIZE)
     cycle1 = Cycle(position, 1)
     cycle1.set_velocity(Point(0, 0))
-    cycle1.set_color(Color(50, 125, 200))
+    cycle1.set_color(gameconstants.RED)
+    cycle1.set_text("]8[")
     cast.add_actor("cycle1", cycle1)
 
-    position = Point(1, 1) #just a facy way of positioning proportionally to the screen size
+    # Actor score 1
+    position = Point(1, 1) 
     position = position.scale(gameconstants.CELL_SIZE)
     score1 = Score()
     score1.set_position(position)
-    score1.set_color(Color(50, 125, 200))
+    score1.set_color(gameconstants.RED)
+    score1.set_font_size(gameconstants.FONT_SIZE)
     cast.add_actor("score1", score1)
-    
 
-
+    # Actor cycle 2
     position = Point(int(gameconstants.COLS / 3 * 2), int(gameconstants.ROWS / 2))
     position = position.scale(gameconstants.CELL_SIZE)
     cycle2 = Cycle(position, 3)
     cycle2.set_velocity(Point(0, 0))
-    cycle2.set_color(Color(0, 0, 200))
+    cycle2.set_color(gameconstants.YELLOW)
+    cycle2.set_text("¦Ä¦")
     cast.add_actor("cycle2", cycle2)
 
-    position = Point((gameconstants.COLS - 6), 1) #just a facy way of positioning proportionally to the screen size
+    # Actor score 2
+    position = Point((gameconstants.COLS - 7), 1) 
     position = position.scale(gameconstants.CELL_SIZE)
     score2 = Score()
     score2.set_position(position)
-    score2.set_color(Color(0, 0, 200))
+    score2.set_color(gameconstants.YELLOW)
+    score2.set_font_size(gameconstants.FONT_SIZE)
     cast.add_actor("score2", score2)
 
-    position = Point(int(gameconstants.COLS / 2), int(gameconstants.ROWS / 2))
+    # Actor Game Over message
+    position = Point(int((gameconstants.COLS / 2) - 6), int((gameconstants.ROWS / 2) - 5))
     position = position.scale(gameconstants.CELL_SIZE)
-
     message = Actor()
     message.set_text("")
     message.set_position(position)
-    cast.add_actor("messages", message)
+    message.set_font_size(gameconstants.FONT_SIZE * 2)
+    cast.add_actor("messages", message) # Game Over Message
 
     # start the game
     keyboard_service = KeyboardService()
