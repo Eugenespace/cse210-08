@@ -116,7 +116,6 @@ class Actor:
         """
         self._velocity = velocity
 
-    # I added this from the draw_actors_action of the snake to test (-sn):
 
     def execute(self, cast, script):
         """Executes the draw actors action.

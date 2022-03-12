@@ -1,8 +1,6 @@
-### NEEDS TO BE UPDATED
-
 # CYCLE
 
-Let the CYCLE overcome you! Gather falling rubys and enrich yourself, but watch out! Falling rocks will rob you of your hard earned riches. CYCLE is a fun-time collect and avoid game that will either leave you rich or leave you broke in more ways than one!
+Go head to head in this exciting new game. Outlast your opponent as you leave uncrossible bike trails. Box them in, evade their traps, outlive and outlast! 
 
 ## Getting Started
 
@@ -24,6 +22,22 @@ python3 cycle
 You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the
 project folder. Select the main module inside the greed folder and click the "run" icon.
 
+## Controls
+
+Player 1                          Player 2
+
+      .---.                         .---.
+      | W |                         | I |
+      '---'                         '---'
+.---. .---. .---.             .---. .---. .---.
+| A | | S | | D |             | J | | K | | L |
+'---' '---' '---'             '---' '---' '---'
+W = Turn Up                   I = Turn Up
+A = Turn Left                 J = Turn Left
+S = Turn Down (for what)      K = Turn Down (for what)
+D = Turn Right                L = Turn Right
+
+
 ## Project Structure
 ---
 The project files and folders are organized as follows:
@@ -31,13 +45,11 @@ The project files and folders are organized as follows:
 
 root (project root folder)
 
-+-- cycle (source code for game)
++-- cycle (game folder)
 
-+-- data (data files for game)
+    +-- game (source code for game)
 
-+-- game (specific game classes)
-
-+-- **main**.py (entry point for program)
+    +-- **main**.py (entry point for program)
 
 +-- README.md (general info)
 
